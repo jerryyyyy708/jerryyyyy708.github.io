@@ -1,0 +1,90 @@
+html {
+    font-size: 20px;
+    /*font-family: 'Qahiri', sans-serif;*/
+}
+
+.switch_page:hover {
+    cursor: pointer;
+    color: dodgerblue;
+}
+
+.mid {
+    margin-left: 10px;
+}
+
+.small {
+    margin-left: 10px;
+}
+
+.net {
+    text-decoration: none;
+    color: blue;
+}
+
+.small_title {
+    margin-left: 10px;
+}
+
+.net:hover {
+    color: dodgerblue;
+}
+
+body {
+    margin: 0;
+}
+
+.pict {
+    margin-right: 10px;
+}
+
+.teacher {
+    width: 500px;
+    border: 2px solid black;
+    margin: 3px;
+    /*background-color:antiquewhite;*/
+    padding: 20px 0px 20px 0;
+}
+
+.teacher2 {
+    width: 500px;
+    height: 200px;
+    border: 2px solid black;
+    margin: 3px;
+    display: inline-block;
+    /*background-color:antiquewhite;*/
+    padding: 20px 0px 20px 0;
+}
+
+#header {
+    display: block;
+    line-height: 65px;
+    height: 65px;
+    box-shadow: 0px 2px 0px rgb(216, 213, 213);
+    font-size: 23px;
+    padding-left: 10px;
+}
+
+#back {
+    font-size: 17px;
+    line-height: 65px;
+    padding: 0px 10px 0px;
+    float: right;
+}
+
+#back:hover {
+    background-color: rgb(177, 177, 177);
+    cursor: pointer;
+}
+
+#blocks {
+    text-align: center;
+}
+
+.inblock {
+    text-align: left;
+}
+
+/*img{
+    display: block;
+    margin:0 auto;
+}*/
