@@ -5,7 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
-    <link href="styles/first.CSS" rel="stylesheet" type="text/css">
+    <link href="styles/try.CSS" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,19 +15,22 @@
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Home Page</a>
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <button class="btn btn-dark" type="submit" id="back" onclick="location.href='index.html'">Back</button>
+          </div>
+        </div>
+    </nav>
+    
 
-    <div class="container-fluid"> 
-        <header class = "blog-header">
-            <div class="row">
-                <div class="col-10">Home Page</div>
-                <div class="col-2" align="right">
-                    <button type="button" class="btn btn-light">Back</button>
-                </div>
-            </div>
-        </header>
-        <div class="row">
-            <div class="col-2">
-                <div class = "category">Chang Chi-Jui<div>
+    <div class="container-fluid min-vh-100 d-flex flex-column p-0"> 
+        <div class="d-flex flex-row flex-grow-1 mb-2">
+            <div class="d-flex flex-column flex-shrink-0 p-3" style = "width: 250px" id = "leftrow">
+                <div class = "topcategory">Chang Chi-Jui</div>
                 <div class="item"><a href="index.html" class="text-secondary">Home</a></div>
                 <div class="item"><a href="#" class="text-secondary">CV</a></div>
                 <div class="category">Projects</div>
@@ -39,11 +42,19 @@
                 <div class="item"><a href="https://www.linkedin.com/in/jerryyyyy708/" class="text-secondary">LinkedIn</a></div>
                 <div class="item"><a href="https://github.com/jerryyyyy708" class="text-secondary">GitHub</a></div>
                 <div class="item"><a href="https://medium.com/@Jerryyyyy" class="text-secondary">Medium</a></div>
+                <div class="category">Others</div>
                 <div class="item"><a href="log.html" class="text-secondary">開發日誌</a></div>
             </div>
-            <div class="col-10"></div>
+            <div class="d-flex flex-column flex-shrink-0 p-3">
+                <h1 class="title">About Me</h1>
+                <img src="images/jer.jpg" width="600" height="400"></img>
+                <p>我是張紀睿, 夢想成為主業Data Scientist, 副業玩音樂的人!</p>
+            </div>
         </div>
+
     </div>
+
+    
 </body>
 
 
