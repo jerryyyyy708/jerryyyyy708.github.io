@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
+    <title>YT收益分析與視覺化</title>
 </head>
 
 <body>
@@ -47,8 +47,21 @@
                 <div class="item"><a href="log.html" class="text-secondary">開發日誌</a></div>
             </div>
             <div class="d-flex flex-column flex-shrink-0 p-3">
-                <h1>個人簡歷</h1>
-                <embed src="src/cv.pdf" type="application/pdf" width=1200 height=650>
+                <h1 class="title">YT收益分析與視覺化</h1>
+                <h4>Dataset</h4>
+                    <p>資料來自高中至大一經營的<a href="https://www.youtube.com/@user-xl8yn2th6t">YouTube頻道</a>真實數據。</p>
+                <h4>資料視覺化</h4>
+                    <p>利用 D3.js 建立 Histogram、Scatter Plot 以及 Parrelel Coordinate Plot 幫助分析各項指標對收益的影響。<br><a href="https://jerryyyyy708.github.io/YT_Revenue_Visualize/">Demo Page</a></p>
+                    <embed src="src/DV.pdf" type="application/pdf" width=1200 height=650>
+                <h4 id="pend">ML 數據分析</h4>
+                <p>經過視覺化篩選出適合用於預測收益的feature後，利用Sklearn進行數據分析。</p>
+                <ul>
+                    <li>Decision Tree: 收益每1000元分為4個區間進行classification，準確率65%</li>
+                    <li>RandomForest: 收益每1000元分為4個區間進行classification，準確率74%</li>
+                    <li>KNN: 收益每1000元分為4個區間進行classification，準確率72%</li>
+                    <li>Linear Regression: 預測實際收益數字，準確率73%</li>
+                </ul>
+                <a href="https://github.com/jerryyyyy708/YT_Revenue_Prediction">GitHub Repository</a>
             </div>
         </div>
 
