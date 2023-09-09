@@ -52,13 +52,13 @@ h4{
     float: left;
 }
 
-.pj_complete {
+.Complete {
     font-size: 18px;
     color: green;
     margin-top: 13px;
 }
 
-.pj_ongoing {
+.Ongoing {
     font-size: 18px;
     font-weight: 900;
     color: rgba(255, 111, 0, 0.881);

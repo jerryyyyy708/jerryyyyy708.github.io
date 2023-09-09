@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">
     <link href="styles/try.CSS" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,50 +74,18 @@
                 </ul>
                 <br>
                 <h5 class="title">Project List</h5>
-                <table class="table align-middle">
+                <table class="table align-middle" id = "projects">
                     <tr class="title">
                         <td width ="250px">Title</td>
                         <td width ="600px">Description</td>
                         <td width = "250px">Language</td>
                         <td>Status</td>
                     </tr>
-                    <tr>
-                        <td>Android Song Writer</td>
-                        <td>An Android application for song writing.</td>
-                        <td>Java, SQLite</td>
-                        <td class="pj_ongoing">Ongoing</td>
-                    </tr>
-                    <tr>
-                        <td>Sketch Converter</td>
-                        <td>Use PyTorch to train CNN model and deploy on C# app.</td>
-                        <td>Python, C#</td>
-                        <td class="pj_ongoing">Ongoing</td>
-                    </tr>
-                    <tr>
-                        <td>VST Plugin</td>
-                        <td>Build a custom VST plugin with JUCE framework.</td>
-                        <td>C++</td>
-                        <td class="pj_ongoing">Ongoing</td>
-                    </tr>
-                    <tr>
-                        <td>NYCU CS Project</td>
-                        <td>Medical image segmentation(KVASIR-SEG) with 70% accuracy. Live demo web app deployed by Flask</td>
-                        <td>Python</td>
-                        <td class="pj_complete">Complete</td>
-                    </tr>
-                    <tr>
-                        <td>YT Data Analysis</td>
-                        <td>Analyze data collected from my own YouTube channel. Data visualization by D3.js, and machine learning by Sklearn.</td>
-                        <td>Python, JavaScript</td>
-                        <td class="pj_complete">Complete</td>
-                    </tr>
                 </table>
             </div>
         </div>
-
     </div>
-
-    
+    <script src="./scripts/project_table.js"></script> 
 </body>
 
 

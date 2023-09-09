@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+</head>
+<body>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const SQLPromise = initSqlJs({
+                locateFile: file => `https://sql.js.org/dist/sql-wasm.wasm`
+            });
+        
+            // 使用fetch获取数据库文件
+            fetch('projects.db').then(response => {
+                return response.arrayBuffer();
+            }).then(data => {
+                const Uints = new Uint8Array(data);
+                SQLPromise.then(SQL => {
+                    const db = new SQL.Database(Uints);
+                    const contents = db.exec("SELECT * FROM projects");
+                    console.log(contents);
+                    // 注意：替换"your_table_name"为你的数据库中实际的表名
+                });
+            });
+        });
+        </script>
+        
+
+</body>
+</html>
