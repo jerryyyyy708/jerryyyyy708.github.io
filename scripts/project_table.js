@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
         locateFile: file => `https://sql.js.org/dist/sql-wasm.wasm`
     });
 
-    // 使用fetch获取数据库文件
     fetch('projects.db').then(response => {
         return response.arrayBuffer();
     }).then(data => {
