@@ -1,5 +1,7 @@
 import sqlite3
 import argparse
+import os
+import shutil
 
 def insert_into_projects(db_path, title, description, language, status, page):
     """Insert a new row into the 'projects' table."""
@@ -24,7 +26,8 @@ def insert_into_projects(db_path, title, description, language, status, page):
     # Commit changes and close the connection
     conn.commit()
     conn.close()
-
+    if not os.path.exists(page):
+        shutil.copy('new_page.html', page)
     print(f"Row inserted successfully!")
 
 def main():
