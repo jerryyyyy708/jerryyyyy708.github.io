@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch('projects.db').then(response => {
         return response.arrayBuffer();
     }).then(data => {
-        var elements = [//can change to a json file
+        var elements = [
             { type: 'div', class: 'topcategory', text: 'Chang Chi-Jui' },
             { type: 'div', class: 'item', text: 'Home', href: 'index.html' },
             { type: 'div', class: 'item', text: 'CV', href: 'cv.html' },
@@ -26,7 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }).then(elements => {
         const leftRow = document.getElementById("leftrow");
-        var static_elements = [//can change to a json file
+        const fragment = document.createDocumentFragment(); // Create a Document Fragment
+
+        var static_elements = [
             { type: 'div', class: 'category', text: 'Music' },
             { type: 'div', class: 'item', text: 'Music List', href: 'music.html' },
             { type: 'div', class: 'item', text: 'YouTube', href: 'https://www.youtube.com/channel/UC__4JYA_nYu45UikAlfb1lg' },
@@ -52,7 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 div.textContent = element.text;
             }
     
-            leftRow.appendChild(div);
+            fragment.appendChild(div); // Append elements to the Document Fragment
         }
+
+        leftRow.appendChild(fragment); // Append the Document Fragment to the DOM
     });
 });
