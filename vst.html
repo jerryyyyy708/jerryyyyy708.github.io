@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VST Plugin</title>
+    <title>Audio Converter VST</title>
 </head>
 
 <body>
@@ -34,11 +34,45 @@
             <script src="./scripts/sidebar.js"></script>
             <div class="d-flex flex-column flex-shrink-0 p-3">
                 <div>
-                    <h1 class="pj_title">VST Plugin</h1>
+                    <h1 class="pj_title">Audio Converter VST</h1>
                     <p class="Ongoing">。Ongoing</p>
                 </div>
                 <h4>簡介</h4>
-                <p> 練習使用JUCE開發VST plugin</p>
+                <p> 編曲軟體遇到不支援的檔案類型時，時常會需要上網進行轉檔，這是非常麻煩的，<br>
+                    因此針對這個問題設計了VST Plugin，可以根據需求轉換音檔類型(比如 m4a -> mp3)，<br>
+                    讓使用者可以在不離開編曲軟體的情況下，直接透過此plugin進行轉檔，
+                    進而節省轉檔所帶來的額外工作量。<br>
+                    <a href="https://github.com/jerryyyyy708/Audio_File_Converter.git">GitHub Repository</a>
+                </p>
+                <p>目前已完成檔案轉換的功能，接下來須完成GUI的設計並將功能串接上去。</p>
+                <h4>Build the Code</h4>
+                <style>
+                    pre {
+                        background-color: #f4f4f4;
+                        border: 1px solid #ddd;
+                        padding: 10px;
+                        border-radius: 4px;
+                    }
+                </style>
+                <p>This part shows how to build the exe with the converting functionality.</p>
+                <p>
+                    <b>Step 1.</b><br> Clone the GitHub repository<br>
+                    <pre><code>git clone https://github.com/jerryyyyy708/Audio_File_Converter.git</code></pre>
+                    <b>Step 2.</b> Build the exe file using Makefile. (It might take a few minutes to complete the build.)<br>
+                    <pre><code>make</code></pre>
+                    After that, you should see the converter.exe in the folder.<br>
+                    <b>Usage</b>
+                    <pre><code>./converter [input_file] [output_file]</code></pre>                  
+                </p>
+                <h4>實作細節</h4>
+                <p><b>Converter.exe</b><br>
+                    <ul>
+                        <li>使用ffmpeg的轉換功能來進行檔案轉換。</li>
+                        <li>由於希望在功能embed於VST時，不需要依賴資料夾內的ffmpeg.exe，因此在build時使用exe2str.py將exe檔存入標頭檔ffmpeg_bytes.h。</li>
+                        <li>程式執行時會從header取得ffmpeg.exe的資訊，暫時建出ffmpeg並進行convert，並在執行完成後將暫存檔刪除。</li>
+                        <li>Compile完成後，暫存的標頭檔會被移除，產出的converter.exe不須依賴ffmpeg或標頭檔。</li>
+                    </ul>
+                </p>
             </div>            
         </div>
 
