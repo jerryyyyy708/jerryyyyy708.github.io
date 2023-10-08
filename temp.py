@@ -14,6 +14,6 @@ def update_page_value_by_title(db_path, title_value, page_value):
 db_path = 'projects.db'
 #titles = ['Android Song Writer', 'Sketch Converter', 'VST Plugin', 'NYCU CS Project', 'YT Data Analysis']
 #htmls = ['android.html', 'sketch.html', 'vst.html', 'fyp.html', 'YT_vis.html']
-update_page_value_by_title(db_path, 'Audio Converter VST', 'VST Plugin')
+update_page_value_by_title(db_path,'Sketch Converter', 'AI Sketch Generator') #first from second to
 # for i in range(len(titles)):
 #     update_page_value_by_title(db_path, titles[i], htmls[i])
