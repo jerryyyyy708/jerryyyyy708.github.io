@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }).then(data => {
         var elements = [
             { type: 'div', class: 'topcategory', text: 'Chang Chi-Jui' },
-            { type: 'div', class: 'item', text: 'Home', href: 'index.html' },
+            { type: 'div', class: 'item', text: 'Home', href: '/index.html' },
             { type: 'div', class: 'item', text: 'CV', href: '/pages/cv.html' },
             { type: 'div', class: 'category', text: 'Projects' },
         ];
