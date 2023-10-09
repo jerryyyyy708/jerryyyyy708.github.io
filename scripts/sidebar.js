@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", function() {
         locateFile: file => `https://sql.js.org/dist/sql-wasm.wasm`
     });
 
-    fetch('projects.db').then(response => {
+    fetch('/projects.db').then(response => {
         return response.arrayBuffer();
     }).then(data => {
         var elements = [
             { type: 'div', class: 'topcategory', text: 'Chang Chi-Jui' },
             { type: 'div', class: 'item', text: 'Home', href: 'index.html' },
-            { type: 'div', class: 'item', text: 'CV', href: 'cv.html' },
+            { type: 'div', class: 'item', text: 'CV', href: '/pages/cv.html' },
             { type: 'div', class: 'category', text: 'Projects' },
         ];
 
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const contents = db.exec("SELECT * FROM projects")[0];
             for(let i in contents.values) {
                 let title = contents.values[i][1];
-                let page = contents.values[i][5];
+                let page = '/pages/'+contents.values[i][5];
                 elements.push({ type: 'div', class: 'item', text: title, href: page});
             }
             return elements; // Pass elements to the next .then() chain
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var static_elements = [
             { type: 'div', class: 'category', text: 'Music' },
-            { type: 'div', class: 'item', text: 'Music List', href: 'music.html' },
+            { type: 'div', class: 'item', text: 'Music List', href: '/pages/music.html' },
             { type: 'div', class: 'item', text: 'YouTube', href: 'https://www.youtube.com/channel/UC__4JYA_nYu45UikAlfb1lg' },
             { type: 'div', class: 'category', text: 'Links' },
             { type: 'div', class: 'item', text: 'LinkedIn', href: 'https://www.linkedin.com/in/jerryyyyy708/' },

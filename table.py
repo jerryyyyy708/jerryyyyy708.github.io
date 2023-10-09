@@ -26,8 +26,8 @@ def insert_into_projects(db_path, title, description, language, status, page):
     # Commit changes and close the connection
     conn.commit()
     conn.close()
-    if not os.path.exists(page):
-        shutil.copy('new_page.html', page)
+    if not os.path.exists('./pages/'+page):
+        shutil.copy('./pages/new_page.html', './pages/'+page)
     print(f"Row inserted successfully!")
 
 def main():
