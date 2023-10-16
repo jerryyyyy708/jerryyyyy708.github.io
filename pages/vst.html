@@ -44,35 +44,23 @@
                     進而節省轉檔所帶來的額外工作量。<br>
                     <a href="https://github.com/jerryyyyy708/Audio_File_Converter.git">GitHub Repository</a>
                 </p>
-                <p>目前已完成檔案轉換的功能，接下來須完成GUI的設計並將功能串接上去。</p>
-                <h4>Build the Code</h4>
-                <style>
-                    pre {
-                        background-color: #f4f4f4;
-                        border: 1px solid #ddd;
-                        padding: 10px;
-                        border-radius: 4px;
-                    }
-                </style>
-                <p>This part shows how to build the exe with the converting functionality.</p>
+                <h4>使用方法</h4>
                 <p>
-                    <b>Step 1.</b><br> Clone the GitHub repository<br>
-                    <pre><code>git clone https://github.com/jerryyyyy708/Audio_File_Converter.git</code></pre>
-                    <b>Step 2.</b> Build the exe file using Makefile. (It might take a few minutes to complete the build.)<br>
-                    <pre><code>make</code></pre>
-                    After that, you should see the converter.exe in the folder.<br>
-                    <b>Usage</b>
-                    <pre><code>./converter [input_file] [output_file]</code></pre>                  
+                    1. 將 vst3 放入 DAW 可以讀取的資料夾後，啟動 DAW 並開啟 Audio Converter。<br>
+                    <img src = "/images/Audio_Converter1.jpg"></img><br>
+                    2. 首次開啟時，需要先設定檔案輸出的資料夾(點擊 set output folder)。之後，程式會預設使用最後一次設定的資料夾。<br>
+                    <img src = "/images/Audio_Converter2.jpg"></img><br>
+                    3. 點擊 Upload 選擇欲轉換成mp4的音訊檔案。<br>
+                    <img src = "/images/Audio_Converter3.jpg"></img><br>
+                    4. 點擊 Convert，若出現 Success代表轉檔成功，可以到輸出的資料夾查看成果。若出現 Error，則需檢查輸入檔案類型是否有誤。<br>
+                    <img src = "/images/Audio_Converter4.jpg"></img> <img src = "/images/Audio_Converter5.jpg"></img><br>
                 </p>
-                <h4>實作細節</h4>
-                <p><b>Converter.exe</b><br>
-                    <ul>
-                        <li>使用ffmpeg的轉換功能來進行檔案轉換。</li>
-                        <li>由於希望在功能embed於VST時，不需要依賴資料夾內的ffmpeg.exe，因此在build時使用exe2str.py將exe檔存入標頭檔ffmpeg_bytes.h。</li>
-                        <li>程式執行時會從header取得ffmpeg.exe的資訊，暫時建出ffmpeg並進行convert，並在執行完成後將暫存檔刪除。</li>
-                        <li>Compile完成後，暫存的標頭檔會被移除，產出的converter.exe不須依賴ffmpeg或標頭檔。</li>
-                    </ul>
-                </p>
+
+                <h4>可優化項目</h4>
+                <ul>
+                    <li>選擇轉檔類型，不局限於m4a轉mp4。</li>
+                    <li>添加保護機制，避免錯誤的輸入型態。</li>
+                </ul>
             </div>            
         </div>
 
