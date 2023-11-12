@@ -18,6 +18,12 @@ python temp.py
 ```
 目前功能是寫死的 update_page_value_by_title，使用時需要直接改程式碼內容。
 
+### 在資料庫中新增 column
+```
+python insert_column.py
+```
+目前功能也是寫死的，使用時須直接更改程式碼內容。
+
 ### CSS Styles
 * ```first.css``` : Music Site 以及其子頁面使用的 style。未來希望將 Music Site 改用 HUGO 框架以 Blog 形式建立。
 * ```try.css``` : 主要頁面使用的 style。以下為新增頁面時常用 element 之介紹。

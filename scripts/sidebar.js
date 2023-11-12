@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", function() {
             for(let i in contents.values) {
                 let title = contents.values[i][1];
                 let page = '/pages/'+contents.values[i][5];
-                elements.push({ type: 'div', class: 'item', text: title, href: page});
+                let show = contents.values[i][6]
+                if(show){
+                    elements.push({ type: 'div', class: 'item', text: title, href: page});
+                }
             }
             return elements; // Pass elements to the next .then() chain
         });

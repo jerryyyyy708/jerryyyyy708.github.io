@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
             const contents = db.exec("SELECT * FROM projects")[0];
             console.log('Column:', contents.values);
             for(i in contents.values) {
+                if(contents.values[i][6])
                 addRow(contents.values[i][1], contents.values[i][2], contents.values[i][3], contents.values[i][4]);
             }
         });
