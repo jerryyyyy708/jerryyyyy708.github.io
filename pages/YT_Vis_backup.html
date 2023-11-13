@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YT收益分析與視覺化</title>
+    <title>YT收益分析開源資料集</title>
 </head>
 
 <body>
@@ -34,39 +34,27 @@
             <script src="/scripts/sidebar.js"></script>
             <div class="d-flex flex-column flex-shrink-0 p-3">
                 <div>
-                    <h1 class="pj_title">YT收益分析與視覺化</h1>
-                    <p class="Complete">。Completed</p>
+                    <h1 class="pj_title">YT收益分析開源資料集</h1>
                 </div>
                 <h4>Dataset</h4>
-                    <p>資料來自高中至大一經營的<a href="https://www.youtube.com/@user-xl8yn2th6t">YouTube頻道</a>真實數據。</p>
-                <h4>資料視覺化</h4>
-                    <p>利用 D3.js 建立 Histogram、Scatter Plot 以及 Parrelel Coordinate Plot 幫助分析各項指標對收益的影響。<br><a href="https://jerryyyyy708.github.io/YT_Revenue_Visualize/">Demo Page</a></p>
-                    <embed src="/src/DV.pdf#toolbar=0" type="application/pdf" width=1200 height=650>
-                <h4 id="pend">ML 數據分析</h4>
-                <p>經過視覺化篩選出適合用於預測收益的feature後，利用Sklearn進行數據分析。</p>
-                <ul>
-                    <li>Decision Tree: 收益每1000元分為4個區間進行classification，準確率65%</li>
-                    <li>RandomForest: 收益每1000元分為4個區間進行classification，準確率74%</li>
-                    <li>KNN: 收益每1000元分為4個區間進行classification，準確率72%</li>
-                    <li>Linear Regression: 預測實際收益數字，準確率73%</li>
-                </ul>
-                <a href="https://github.com/jerryyyyy708/YT_Revenue_Prediction">GitHub Repository</a>
-                <br>
-                <h4>Open Source</h4>
-                <p>
-                    此資料集提供非營利學習使用，若有需要請在下方表單填寫您的E-mail與預計使用Dataset之用途，我會在最短的時間內回覆!
-                </p>
-                <form action="https://formspree.io/f/xeqbrnbj" method="POST">
-                    <label for="email">你的郵箱:</label>
-                    <br>
-                    <input type="email" name="_replyto" required>
-                    <br>
-                    <label for="message">資料用途:</label>
-                    <br>
-                    <textarea name="message" required></textarea>
-                    <br>
-                    <button type="submit">發送</button>
-                </form>
+                    <p>資料來自高中至大一經營的<a href="https://www.youtube.com/@MM-cx5yf">YouTube頻道</a>真實數據。<br>
+                    </p>
+                <h4>內容介紹</h4>
+                    <p>
+                        根據Domain Knowledge從後台中提取出觀看次數、觀看時間、喜歡、不喜歡等資訊以及頻道收益，再匯出為csv檔供使用。<br>
+                        檔案內的資訊皆為頻道內的 <b>真實數據</b>，資料集僅供學習、研究用途，<b>嚴禁用於任何商業行為</b>，使用時需 <b>標記來源</b>。
+                        <br>
+                        以下為範例資料:
+                        <br>
+                        <img src = "/src/image.png" width="1200" height="540"></img>
+                        <br>
+                        點擊<a href="/src/YT_Revenue.csv">這裡</a>下載檔案。
+                    </p>
+                    <h4>Citation</h4>
+                    <p>Please cite this dataset as:</p>
+                    <textarea readonly class="form-control" rows="2" style="text-align: left;">[GCWS]. (2021). GCWS_YT_Revenue [Dataset]. Retrieved from [https://jerryyyyy708.github.io/YT_vis.html]
+                    </textarea>
+                    
             </div>
         </div>
 
