@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var static_elements = [
             { type: 'div', class: 'category', text: 'Music' },
-            { type: 'div', class: 'item', text: 'Music List', href: '/pages/music.html' },
+            { type: 'div', class: 'item', text: 'Music Blog', href: 'https://jerryyyyy708.github.io/Music_Site/' },
             { type: 'div', class: 'item', text: 'YouTube', href: 'https://www.youtube.com/channel/UC__4JYA_nYu45UikAlfb1lg' },
             { type: 'div', class: 'category', text: 'Links' },
             { type: 'div', class: 'item', text: 'LinkedIn', href: 'https://www.linkedin.com/in/jerryyyyy708/' },
