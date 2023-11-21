@@ -3,7 +3,6 @@ html {
     /*font-family: 'Qahiri', sans-serif;*/
 }
 
-
 #header {
     line-height: 65px;
     height: 65px;
@@ -11,15 +10,32 @@ html {
     font-size: 23px;
 }
 
+body {
+    overflow: hidden;
+}
 
 #back:hover {
     background-color: rgb(177, 177, 177);
     cursor: pointer;
 }
 
-#leftrow {
-    background-color: rgb(147, 212, 255);
+#topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensures the bar is above other content */
 }
+
+#leftrow {
+    margin-top: 70px;
+    background-color: rgb(147, 212, 255);
+    position: fixed;
+    width: 250px;
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Enables scrolling within the sidebar */
+}
+
 
 .topcategory {
     font-size:25px;
@@ -63,4 +79,12 @@ h4{
     font-weight: 900;
     color: rgba(255, 111, 0, 0.881);
     margin-top: 13px;
+}
+
+.main-content {
+    margin-top: 70px;
+    margin-left: 250px; /* Adjust to match the width of your sidebar */
+    height: calc(100vh - 70px);
+    width: calc(100vw - 250px);
+    overflow-y: auto;
 }
