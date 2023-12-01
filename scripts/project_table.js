@@ -36,7 +36,7 @@ function addRow(title, description, language, status) {
 
 document.addEventListener("DOMContentLoaded", function() {
     const SQLPromise = initSqlJs({
-        locateFile: file => `https://sql.js.org/dist/sql-wasm.wasm`
+        locateFile: file => `/scripts/sql-wasm.wasm`
     });
 
     fetch('projects.db').then(response => {
