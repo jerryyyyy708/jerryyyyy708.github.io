@@ -37,13 +37,60 @@
                     <h1 class="pj_title">AI Sketch Generator</h1>
                     <p class="Ongoing">。Ongoing</p>
                 </div>
-                <h4>簡介</h4>
-                <p> 在此專案中，我們透過了深度學習的方法來改善傳統的邊緣檢測方法需要手動調整參數的缺點。
-                    <BR>我們利用xDoG產生圖片與線稿對，並選擇表現較好的圖片作為訓練資料，以建立出可以自動從輸入影像產生線稿的模型。</p>
+                <h4>Introduction</h4>
+                <p> 在此專案中，我們專注於透過深度學習的方法來改善傳統的邊緣檢測方法xDoG需要手動調整參數的缺點。</p>
                 <h4>Proposed Method</h4>
                 <p>在此章節將詳細介紹我們所提出的方法以及所使用的技術。</p>
-                <h5><b>Step 1. 訓練資料生成</b></h5>
-                <p>123123</p>
+                <h5><b>訓練資料生成</b></h5>
+                <p>透過爬蟲的方式從 <a href="https://konachan.com/post?tags=%20rating:safe">konachan</a> 網站中抓取了約5000張的動漫圖片，並透過xDoG將其轉換為對應的線稿。<br>
+                在此步驟中，我們為所有圖片設定了統一的參數，再從中選擇表現良好的圖片作為最終的訓練資料集。
+                <table style="max-width: 600px; border: 1px solid black;">
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;">Original Image</td>
+                        <td style="border: 1px solid black; text-align: center;">xDoG Image</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;">
+                            <img src="/images/sketch_converter/origin.jpg" style="max-width: 100%; height: auto;"></img>
+                        </td>
+                        <td style="border: 1px solid black; text-align: center;">
+                            <img src="/images/sketch_converter/xdog.jpg" style="max-width: 100%; height: auto;"></img>
+                        </td>
+                    </tr>
+                </table>
+                </p>
+                <h5><b>模型訓練</b></h5>
+                <p>對於本次專案，我們使用了UNet作為線稿生成的模型，UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。<br>
+                    <img src="/images/sketch_converter/unet.jpg" style="width: 800px; height: auto;"><br>
+                基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
+                <b>Loss Function:</b> L1loss, <b>Optimizer:</b> SGD, <b>Learning Rate:</b> 1e-3。<BR>
+                <br>下圖為訓練中的loss變化趨勢:<BR>
+                <img src="/images/sketch_converter/loss.jpg" style="width: 500px; height: auto;"><br>
+                </p>
+                <h4>Result</h4>
+                <div style="background-color: lightgray; width: 800px; height: 250px; display: flex; align-items: center; justify-content: flex-start;">
+                    <div style="padding-left: 20px;">
+                    <table>
+                        <tr>
+                            <td width="300" id="imageDisplay"><img src='/images/sketch_converter/r1.jpg' style="width: 100%; height: auto;"></td>
+                            <td style="padding-left: 20px;">
+                                <input type="radio" id="image1" name="image" value="1.jpg" onclick="showImage('/images/sketch_converter/r1.jpg')" checked>
+                                <label for="image1">Original</label><br>
+                                <input type="radio" id="image2" name="image" value="2.jpg" onclick="showImage('/images/sketch_converter/r2.jpg')">
+                                <label for="image2">xDoG</label><br>
+                                <input type="radio" id="image3" name="image" value="3.jpg" onclick="showImage('/images/sketch_converter/r3.jpg')">
+                                <label for="image3">Our Result</label>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+                <script>
+                    function showImage(imgName) {
+                        document.getElementById('imageDisplay').innerHTML = '<img src="' + imgName + '" style="width: 100%; height: auto;">';
+                    }
+                </script>
+                
             </div>            
         </div>
 
