@@ -16,27 +16,9 @@
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <div id="topbar"><nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/index.html">Jerryyyyy708</a>
-          <div class="collapse navbar-collapse">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            </ul>
-            <button class="btn btn-dark" type="submit" id="back" onclick="location.href='/index.html'">Back</button>
-          </div>
-        </div>
-    </nav></div>
-    
-
-    <div class="container-fluid min-vh-100 d-flex flex-column p-0"> 
-        <div class="d-flex flex-row flex-grow-1 mb-2">
-            <div class="d-flex flex-column flex-shrink-0 p-3" style = "width: 250px" id = "leftrow"></div>
-            <script src="/scripts/sidebar.js"></script>
-            <div class="d-flex flex-column flex-shrink-0 p-3 main-content">
-                <div>
-                    <h1 class="pj_title">AI Sketch Generator</h1>
-                    <p class="Ongoing">。Ongoing</p>
-                </div>
+            
+            <div class="d-flex flex-column flex-shrink-0 p-0 main-content">
+                <h1 class="pj_title">AI Sketch Generator</h1>
                 <h4>Introduction</h4>
                 <p> 在此專案中，我們專注於透過深度學習的方法來改善傳統的邊緣檢測方法xDoG需要手動調整參數的缺點。</p>
                 <h4>Proposed Method</h4>
@@ -60,16 +42,19 @@
                 </table>
                 </p>
                 <h5><b>模型訓練</b></h5>
-                <p>對於本次專案，我們使用了UNet作為線稿生成的模型，UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。<br>
+                <p>在本次專案，我們選擇了UNet作為線稿生成的模型。<br>
+                    最初我們打算使用pix2pix作為生成圖像的模型，然而，由於在訓練時間與模型的參數調整上太過複雜，<br>
+                    基於訓練資源的限制，我們最終決定改為直接使用UNet來生成線稿。<br>
+                    UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。<br>
                     <img src="/images/sketch_converter/unet.jpg" style="width: 800px; height: auto;"><br>
-                基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
+                另外，同樣基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
                 <b>Loss Function:</b> L1loss, <b>Optimizer:</b> SGD, <b>Learning Rate:</b> 1e-3。<BR>
                 <br>下圖為訓練中的loss變化趨勢:<BR>
                 <img src="/images/sketch_converter/loss.jpg" style="width: 500px; height: auto;"><br>
                 </p>
                 <h4>Result</h4>
                 <b>1. 線稿生成</b>
-                <div style="background-color: lightgray; width: 800px; height: 250px; display: flex; align-items: center; justify-content: flex-start;">
+                <div style="background-color: lightgray; width: 1250px; height: 255px; display: flex; align-items: center; justify-content: flex-start;">
                     <div style="padding-left: 20px;">
                     <table>
                         <tr>
@@ -85,8 +70,10 @@
                         </tr>
                     </table>
                     </div>
-                </div><br>
-                <b>2. 線稿上色 (Extended Work)</b>
+                </div>
+                <p>將影像輸入模型後，便會出現相應的線稿。更多結果詳見<a href="http://127.0.0.1:5000">Live Demo</a>。</p>
+
+            <b>2. 線稿上色 (Extended Work)</b>
             <p>我們將模型的輸入與輸出維度交換後，嘗試訓練了線稿上色的模型也就是透過輸入線稿來生成彩色圖像，以下為範例結果。
             <table style="max-width: 750px; border: 1px solid black;">
                 <tr>
@@ -128,9 +115,8 @@
                 </script>
                 
             </div>            
-        </div>
 
-    </div>
+
 
     
 </body>
