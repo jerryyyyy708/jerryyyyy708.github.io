@@ -45,7 +45,7 @@
                 <p>在本次專案，我們選擇了UNet作為線稿生成的模型。<br>
                     最初我們打算使用pix2pix作為生成圖像的模型，然而，由於在訓練時間與模型的參數調整上太過複雜，<br>
                     基於訓練資源的限制，我們最終決定改為直接使用UNet來生成線稿。<br>
-                    UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。
+                    UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。<BR>
                     <img src="/images/sketch_converter/unet.jpg" style="width: 800px; height: auto;"><br>
                 另外，同樣基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
                 <b>Loss Function:</b> L1loss, <b>Optimizer:</b> SGD, <b>Learning Rate:</b> 1e-3。<BR>
