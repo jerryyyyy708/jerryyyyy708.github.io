@@ -42,15 +42,19 @@
                 </table>
                 </p>
                 <h5><b>模型訓練</b></h5>
-                <p>對於本次專案，我們使用了UNet作為線稿生成的模型，UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。<br>
+                <p>在本次專案，我們選擇了UNet作為線稿生成的模型。<br>
+                    最初我們打算使用pix2pix作為生成圖像的模型，然而，由於在訓練時間與模型的參數調整上太過複雜，<br>
+                    基於訓練資源的限制，我們最終決定改為直接使用UNet來生成線稿。<br>
+                    UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。
                     <img src="/images/sketch_converter/unet.jpg" style="width: 800px; height: auto;"><br>
-                基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
+                另外，同樣基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
                 <b>Loss Function:</b> L1loss, <b>Optimizer:</b> SGD, <b>Learning Rate:</b> 1e-3。<BR>
                 <br>下圖為訓練中的loss變化趨勢:<BR>
                 <img src="/images/sketch_converter/loss.jpg" style="width: 500px; height: auto;"><br>
                 </p>
                 <h4>Result</h4>
-                <div style="background-color: lightgray; width: 1250px; height: 250px; display: flex; align-items: center; justify-content: flex-start;">
+                <b>1. 線稿生成</b>
+                <div style="background-color: lightgray; width: 1250px; height: 255px; display: flex; align-items: center; justify-content: flex-start;">
                     <div style="padding-left: 20px;">
                     <table>
                         <tr>
@@ -66,9 +70,44 @@
                         </tr>
                     </table>
                     </div>
-                    
                 </div>
-                <p>缺: 更多結果(因較剛那些，還有說可以去Life demo)、extended work、補位啥不用gan</p>
+                <p>將影像輸入模型後，便會出現相應的線稿。更多結果詳見<a href="http://127.0.0.1:5000">Live Demo</a>。</p>
+
+            <b>2. 線稿上色 (Extended Work)</b>
+            <p>我們將模型的輸入與輸出維度交換後，嘗試訓練了線稿上色的模型也就是透過輸入線稿來生成彩色圖像，以下為範例結果。
+            <table style="max-width: 750px; border: 1px solid black;">
+                <tr>
+                    <td style="border: 1px solid black; text-align: center;">Input Sketch</td>
+                    <td style="border: 1px solid black; text-align: center;">Output Image</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: center;">
+                        <img src="/images/sketch_converter/s1.png" style="max-width: 100%; height: auto;"></img>
+                    </td>
+                    <td style="border: 1px solid black; text-align: center;">
+                        <img src="/images/sketch_converter/s2.png" style="max-width: 100%; height: auto;"></img>
+                    </td>
+                </tr>
+            </table>
+            </p>
+            <b>3. 風格轉換 (Extended Work)</b>
+            <p>
+                結合線稿生成與線稿上色的模型，即可對輸入的真實照片進行風格轉換的任務。
+                <table style="max-width: 750px; border: 1px solid black;">
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;">Input Image</td>
+                        <td style="border: 1px solid black; text-align: center;">Output Image</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;">
+                            <img src="/images/sketch_converter/s3.jpg" style="max-width: 100%; height: auto;"></img>
+                        </td>
+                        <td style="border: 1px solid black; text-align: center;">
+                            <img src="/images/sketch_converter/s4.png" style="max-width: 100%; height: auto;"></img>
+                        </td>
+                    </tr>
+                </table>
+            </p>
                 <script>
                     function showImage(imgName) {
                         document.getElementById('imageDisplay').innerHTML = '<img src="' + imgName + '" style="width: 100%; height: auto;">';

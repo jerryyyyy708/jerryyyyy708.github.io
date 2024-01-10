@@ -68,6 +68,7 @@
                 <img src="/images/sketch_converter/loss.jpg" style="width: 500px; height: auto;"><br>
                 </p>
                 <h4>Result</h4>
+                <b>1. 線稿生成</b>
                 <div style="background-color: lightgray; width: 800px; height: 250px; display: flex; align-items: center; justify-content: flex-start;">
                     <div style="padding-left: 20px;">
                     <table>
@@ -84,7 +85,42 @@
                         </tr>
                     </table>
                     </div>
-                </div>
+                </div><br>
+                <b>2. 線稿上色 (Extended Work)</b>
+            <p>我們將模型的輸入與輸出維度交換後，嘗試訓練了線稿上色的模型也就是透過輸入線稿來生成彩色圖像，以下為範例結果。
+            <table style="max-width: 750px; border: 1px solid black;">
+                <tr>
+                    <td style="border: 1px solid black; text-align: center;">Input Sketch</td>
+                    <td style="border: 1px solid black; text-align: center;">Output Image</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid black; text-align: center;">
+                        <img src="/images/sketch_converter/s1.png" style="max-width: 100%; height: auto;"></img>
+                    </td>
+                    <td style="border: 1px solid black; text-align: center;">
+                        <img src="/images/sketch_converter/s2.png" style="max-width: 100%; height: auto;"></img>
+                    </td>
+                </tr>
+            </table>
+            </p>
+            <b>3. 風格轉換 (Extended Work)</b>
+            <p>
+                結合線稿生成與線稿上色的模型，即可對輸入的真實照片進行風格轉換的任務。
+                <table style="max-width: 750px; border: 1px solid black;">
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;">Input Image</td>
+                        <td style="border: 1px solid black; text-align: center;">Output Image</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align: center;">
+                            <img src="/images/sketch_converter/s3.jpg" style="max-width: 100%; height: auto;"></img>
+                        </td>
+                        <td style="border: 1px solid black; text-align: center;">
+                            <img src="/images/sketch_converter/s4.png" style="max-width: 100%; height: auto;"></img>
+                        </td>
+                    </tr>
+                </table>
+            </p>
                 <script>
                     function showImage(imgName) {
                         document.getElementById('imageDisplay').innerHTML = '<img src="' + imgName + '" style="width: 100%; height: auto;">';
