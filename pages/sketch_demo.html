@@ -24,7 +24,7 @@
                 <h4>Proposed Method</h4>
                 <p>在此章節將詳細介紹我們所提出的方法以及所使用的技術。</p>
                 <h5><b>訓練資料生成</b></h5>
-                <p>透過爬蟲的方式從 <a href="https://konachan.com/post?tags=%20rating:safe">konachan</a> 網站中抓取了約5000張的動漫圖片，並透過xDoG將其轉換為對應的線稿。<br>
+                <p>透過爬蟲的方式從 <a href="https://konachan.com/post?tags=%20rating:safe">konachan</a> 網站中抓取了約5000張的動漫圖片，並實作xDoG將其轉換為對應的線稿。<br>
                 在此步驟中，我們為所有圖片設定了統一的參數，再從中選擇表現良好的圖片作為最終的訓練資料集。
                 <table style="max-width: 600px; border: 1px solid black;">
                     <tr>
@@ -43,9 +43,9 @@
                 </p>
                 <h5><b>模型訓練</b></h5>
                 <p>在本次專案，我們選擇了UNet作為線稿生成的模型。<br>
-                    最初我們打算使用pix2pix作為生成圖像的模型，然而，由於在訓練時間與模型的參數調整上太過複雜，<br>
-                    基於訓練資源的限制，我們最終決定改為直接使用UNet來生成線稿。<br>
-                    UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。
+                    最初我們打算使用pix2pix作為生成圖像的模型，<br>
+                    然而，基於訓練資源的限制，經過實驗後我們改為使用UNet架構來進行線稿生成。<br>
+                    UNet在邊緣檢測上有著非常良好的表現，因此相當符合本次任務的需求。<br>
                     <img src="/images/sketch_converter/unet.jpg" style="width: 800px; height: auto;"><br>
                 另外，同樣基於時間與運算資源上的限制，我們最終使用了210對影像來進行訓練，以下為我們的超參數設置:<Br>
                 <b>Loss Function:</b> L1loss, <b>Optimizer:</b> SGD, <b>Learning Rate:</b> 1e-3。<BR>
