@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>個人週進度報告表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .report-table, .report-table th, .report-table td {
+            border: 1px solid black;
+        }
+        .report-table th, .report-table td {
+            padding: 10px;
+            text-align: left;
+        }
+        .report-table th {
+            background-color: #f2f2f2;
+        }
+        .title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .title h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .title h1::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -5px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .date {
+            font-size: 12px;
+            text-align: end;
+        }
+        .name-row {
+            font-size: 16px;
+        }
+        .name-row span, .date span {
+            display: inline-block;
+        }
+        textarea {
+            width: 100%;
+            border: none;
+            resize: none;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .highlight {
+            color: blue;
+            font-size: larger;
+        }
+        @media print {
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title">
+        <h1>個人週進度報告表</h1>
+    </div>
+
+    <div class="header">
+        <p class="name-row">Name: <span style="width: 300px;">張紀睿</span></p>
+        <p class="date">日期：<span id="current-date"></span></p>
+    </div>
+
+    <table class="report-table">
+        <tr>
+            <th>1. 本週預定工作進度：</th>
+        </tr>
+        <tr>
+            <td><textarea oninput="adjustTextAreaHeight(this)"></textarea></td>
+        </tr>
+        <tr>
+            <th>2. 實際完成工作進度：</th>
+        </tr>
+        <tr>
+            <td><textarea oninput="adjustTextAreaHeight(this)"></textarea></td>
+        </tr>
+        <tr>
+            <th>3. 落差分析：</th>
+        </tr>
+        <tr>
+            <td><textarea oninput="adjustTextAreaHeight(this)"></textarea></td>
+        </tr>
+        <tr>
+            <th>4. 下週預定完成工作(按照進度表)：</th>
+        </tr>
+        <tr>
+            <td><textarea oninput="adjustTextAreaHeight(this)"></textarea></td>
+        </tr>
+    </table>
+
+    <button onclick="window.print();" class="no-print">列印報告</button>
+
+    <script>
+        function adjustTextAreaHeight(element) {
+            element.style.height = "auto";
+            element.style.height = element.scrollHeight + "px";
+        }
+
+        const keywords = ['Research', 'Project \\[仁寶 re-ID\\]', 'Project \\[老鼠搔抓分析\\]', 'Others'];
+
+        function highlightKeywords(text) {
+            const keywords = ['Research', 'Project \\[仁寶 re-ID\\]', 'Project \\[老鼠搔抓分析\\]', 'Others'];
+            keywords.forEach(keyword => {
+                // 使用 'g' 来全局匹配
+                const regex = new RegExp(`(${keyword})`, 'g');
+                // 检查关键字是否为'Research'，如果不是，则在其后添加换行
+                const replacement = keyword === 'Research' ? `<span class="highlight">$1</span>` : `<br><span class="highlight">$1</span>`;
+                text = text.replace(regex, replacement);
+            });
+            return text;
+        }
+
+        function preparePrint() {
+            document.querySelectorAll('textarea').forEach(textarea => {
+                const text = textarea.value;
+                const highlightedText = highlightKeywords(text);
+                textarea.style.display = 'none';
+                const div = document.createElement('div');
+                div.innerHTML = highlightedText.replace(/\n/g, '<br>');
+                textarea.parentNode.insertBefore(div, textarea);
+            });
+        }
+
+        window.onbeforeprint = preparePrint;
+        window.onafterprint = () => {
+            document.querySelectorAll('textarea').forEach(textarea => {
+                textarea.style.display = '';
+                if (textarea.nextElementSibling.tagName === 'DIV') {
+                    textarea.parentNode.removeChild(textarea.nextElementSibling);
+                }
+            });
+        };
+
+        function getCurrentSunday() {
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysUntilSunday = 7 - dayOfWeek;
+            const sunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilSunday);
+            return sunday;
+        }
+
+        function formatDate(date) {
+            return new Intl.DateTimeFormat('zh-TW', {
+                year: 'numeric',
+                month: 'numeric',
+                day: 'numeric',
+                timeZone: 'Asia/Taipei'
+            }).format(date);
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const sunday = getCurrentSunday();
+            const formattedDate = formatDate(sunday);
+            document.getElementById('current-date').innerText = formattedDate;
+
+            // Adjust the height of all textareas initially
+            document.querySelectorAll('textarea').forEach(textarea => {
+                adjustTextAreaHeight(textarea);
+            });
+        });
+    </script>
+
+</body>
+</html>
