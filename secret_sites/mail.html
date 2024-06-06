@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Weekly Report</title>
+<script>
+    function updateText() {
+        // Update points text
+        document.getElementById('point1').innerText = document.getElementById('input1').value;
+        document.getElementById('point2').innerText = document.getElementById('input2').value;
+        document.getElementById('point3').innerText = document.getElementById('input3').value;
+    }
+
+    function setDate() {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const sunday = new Date(today);
+        sunday.setDate(today.getDate() - dayOfWeek + 7); // next Sunday
+        const monday = new Date(today);
+        monday.setDate(today.getDate() - dayOfWeek + 1); // this Monday
+
+        // Custom formatting: YYYYMMDD
+        function formatDate(date) {
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1; // getMonth() is zero-indexed
+            let day = date.getDate();
+            return `${year}${month < 10 ? '0' + month : month}${day < 10 ? '0' + day : day}`;
+        }
+
+        document.getElementById('dateSunday').innerText = formatDate(sunday);
+        document.getElementById('dateMonday').innerText = formatDate(monday);
+    }
+
+    function convertToText() {
+        // Convert all content to plain text
+        document.body.innerHTML = document.body.innerText;
+    }
+</script>
+</head>
+<body onload="setDate()">
+<h1>Weekly Report 張紀睿 <span id="dateSunday"></span></h1>
+<p>老師好，</p>
+<p>附檔為本周<span id="dateMonday"></span>的Weekly Report，以下為本周report之摘要:</p>
+<ol>
+    <li id="point1"><input id="input1" type="text" /></li>
+    <li id="point2"><input id="input2" type="text" /></li>
+    <li id="point3"><input id="input3" type="text" /></li>
+</ol>
+
+<p>感謝老師撥冗閱信，若有需改進之處敬請老師指教!</p>
+<p>Best Regards,</p>
+<p>張紀睿</p>
+</body>
+</html>
+<button onclick="updateText()">Update Points</button>
+<button onclick="convertToText()">Convert to Text</button>
