@@ -38,4 +38,5 @@ python insert_column.py
 * 使用 .json 檔維護靜態資料。
 * 寫一個用來幫資料庫新增屬性的程式，或把功能加在 ```table.py```。
 * 在 table 中新增 visible 屬性以決定是否顯示於 sidebar 跟首頁。
+* 可以在兩個 secret site 之間放互相的傳送門。
 
