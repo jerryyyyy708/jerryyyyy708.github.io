@@ -159,7 +159,10 @@
         function getCurrentSunday() {
             const today = new Date();
             const dayOfWeek = today.getDay();
-            const daysUntilSunday = 0;
+            const daysUntilSunday = 7 - dayOfWeek;
+            if(daysUntilSunday === 7){
+                daysUntilSunday = 0;
+            }
             const sunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilSunday);
             return sunday;
         }
