@@ -160,10 +160,11 @@
             const today = new Date();
             const dayOfWeek = today.getDay();
             const daysUntilSunday = 7 - dayOfWeek;
-            if(daysUntilSunday === 7){
-                daysUntilSunday = 0;
+            sunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilSunday);
+            if(dayOfWeek === 0){
+                sunday = new Date(today.getFullYear(), today.getMonth(), today.getDate());
             }
-            const sunday = new Date(today.getFullYear(), today.getMonth(), today.getDate() + daysUntilSunday);
+            
             return sunday;
         }
 
