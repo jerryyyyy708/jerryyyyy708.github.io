@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>週例會議紀錄產生器</title>
+  <style>
+    input[type="text"] {
+      width: 90%;
+      margin: 6px 0;
+    }
+  </style>
+  <script>
+    function formatToday() {
+      const today = new Date();
+      const y = today.getFullYear();
+      const m = String(today.getMonth() + 1).padStart(2, '0');
+      const d = String(today.getDate()).padStart(2, '0');
+      return `${y}/${m}/${d}`;
+    }
+
+    function updateEmailContent() {
+      const akiLink = document.getElementById('akiInput').value;
+      const mouseLink = document.getElementById('mouseInput').value;
+
+      document.getElementById('akiHref').href = akiLink;
+      document.getElementById('akiHref').innerText = akiLink;
+
+      document.getElementById('mouseHref').href = mouseLink;
+      document.getElementById('mouseHref').innerText = mouseLink;
+
+      document.getElementById('emailDate').innerText = formatToday();
+    }
+
+    function copyEmailContent() {
+      updateEmailContent();
+
+      const preview = document.getElementById('emailPreview');
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = preview.innerHTML;
+      tempDiv.style.position = 'fixed';
+      tempDiv.style.left = '-9999px';
+      document.body.appendChild(tempDiv);
+
+      const range = document.createRange();
+      range.selectNodeContents(tempDiv);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+      selection.removeAllRanges();
+      tempDiv.remove();
+    }
+
+    function openGmail() {
+      copyEmailContent();
+      const subject = `${formatToday()} 週例會議紀錄`;
+      const to = "oscarchen.cs10@nycu.edu.tw";
+      const url = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${encodeURIComponent(subject)}`;
+      window.open(url, "_blank");
+    }
+
+    window.onload = updateEmailContent;
+  </script>
+</head>
+<body>
+  <h2>週例會議紀錄產生器</h2>
+
+  <label>AKI 會議連結：</label><br />
+  <input id="akiInput" type="text" placeholder="貼上 Google Docs 連結" oninput="updateEmailContent()" /><br />
+  <label>老鼠搔抓會議連結：</label><br />
+  <input id="mouseInput" type="text" placeholder="貼上 Google Docs 連結" oninput="updateEmailContent()" /><br />
+
+  <hr />
+
+  <div id="emailPreview">
+    <p>學長您好，</p>
+    <p>隨附連結是本周的會議紀錄，再麻煩學長過目~</p>
+    <p>AKI:<br />
+      <a id="akiHref" href="" target="_blank">AKI 連結</a>
+    </p>
+    <p>老鼠搔抓:<br />
+      <a id="mouseHref" href="" target="_blank">老鼠搔抓連結</a>
+    </p>
+    <br />
+    <p>Best Regards,<br />張紀睿</p>
+  </div>
+
+  <hr />
+
+  <p><strong>主旨：</strong><span id="emailDate"></span> 週例會議紀錄</p>
+  <button onclick="copyEmailContent()">Copy to Clipboard</button>
+  <button onclick="openGmail()">Open Gmail with Subject</button>
+  <a href="vst.html">Vincent</a>
+</body>
+</html>

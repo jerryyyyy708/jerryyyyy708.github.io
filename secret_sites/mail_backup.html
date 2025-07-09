@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Weekly Report</title>
+<style>
+    /* Adjust the width of input elements */
+    input[type="text"] {
+        width: 80%;  /* Set width as 80% of its container */
+        margin: 4px; /* Optional: Add some margin for visual spacing */
+    }
+</style>
+<script>
+    function updateText() {
+        document.getElementById('point1').innerText = document.getElementById('input1').value;
+        document.getElementById('point2').innerText = document.getElementById('input2').value;
+        document.getElementById('point3').innerText = document.getElementById('input3').value;
+    }
+
+    function copyToClipboard() {
+        var textArea = document.createElement("textarea");
+        textArea.style.whiteSpace = "pre"; // Preserve the whitespaces and new lines
+
+        // Fetching texts directly
+        const greeting = document.getElementById('reportContent').innerText;
+        const thanks = document.getElementById('reportContent2').innerText;
+        
+        // Construct list items with tabs and numbering
+        let pointsText = '\n';
+        const points = ['point1', 'point2', 'point3'];
+        points.forEach((pointId, index) => {
+            pointsText += '\t' + (index + 1) + '. ' + document.getElementById(pointId).innerText + '\n';
+        });
+
+        // Concatenate all parts with proper line breaks
+        textArea.value = greeting + pointsText + '\n' + thanks;
+
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('Copy');
+        textArea.remove();
+    }
+
+    function copyH1Content() {
+        var textArea = document.createElement("textarea");
+        textArea.value = document.querySelector('h1').textContent; // Get content from h1
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('Copy');
+        textArea.remove();
+    }
+
+    function setDate() {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const sunday = new Date(today);
+        sunday.setDate(today.getDate() - dayOfWeek + 7); // next Sunday
+        const sunday2 = new Date(today);
+        sunday2.setDate(today.getDate() - dayOfWeek + 7); // next Sunday
+        const monday = new Date(today);
+        monday.setDate(today.getDate() - dayOfWeek + 1); // this Monday
+
+        function formatDate(date) {
+            let year = date.getFullYear();
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            return `${year}${month < 10 ? '0' + month : month}${day < 10 ? '0' + day : day}`;
+        }
+
+        function formatDateMD(date) {
+            let month = date.getMonth() + 1;
+            let day = date.getDate();
+            return `${month}/${day}`;
+        }
+
+        document.getElementById('dateSunday').innerText = formatDate(sunday);
+        document.getElementById('dateMonday').innerText = formatDateMD(monday);
+        document.getElementById('dateSunday2').innerText = formatDateMD(sunday2);
+    }
+
+</script>
+</head>
+<body onload="setDate()">
+    <h1>[Weekly Report] 張紀睿_<span id="dateSunday"></span></h1>
+<div id="reportContent">
+    <p>老師好，</p>
+    <p>附檔為本周&nbsp<span id="dateMonday"></span>&nbsp~&nbsp<span id="dateSunday2"></span>&nbsp的Weekly Report，<br>以下為本周report之摘要:</p>
+</div>
+<ol>
+    <li id="point1"><input id="input1" type="text" /></li>
+    <li id="point2"><input id="input2" type="text" /></li>
+    <li id="point3"><input id="input3" type="text" /></li>
+</ol>
+<div id="reportContent2">
+    <p>感謝老師撥冗閱信，<br>若有需改進之處敬請老師指教!</p>
+    <p>Best Regards,<br>張紀睿</p>
+</div>
+<button onclick="updateText()">Update Points</button>
+<button onclick="copyToClipboard()">Copy to Clipboard</button>
+<button onclick="copyH1Content()">Copy Title</button>
+</body>
+</html>

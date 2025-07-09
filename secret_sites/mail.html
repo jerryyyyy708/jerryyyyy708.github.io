@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <title>Weekly Report</title>
 <style>
-    /* Adjust the width of input elements */
     input[type="text"] {
-        width: 80%;  /* Set width as 80% of its container */
-        margin: 4px; /* Optional: Add some margin for visual spacing */
+        width: 80%;
+        margin: 4px;
     }
 </style>
 <script>
@@ -15,50 +14,56 @@
         document.getElementById('point1').innerText = document.getElementById('input1').value;
         document.getElementById('point2').innerText = document.getElementById('input2').value;
         document.getElementById('point3').innerText = document.getElementById('input3').value;
+        document.getElementById('progress1').innerText = document.getElementById('input4').value;
+        document.getElementById('progress2').innerText = document.getElementById('input5').value;
     }
 
-    function copyToClipboard() {
-        var textArea = document.createElement("textarea");
-        textArea.style.whiteSpace = "pre"; // Preserve the whitespaces and new lines
+    function copyFormattedToClipboard() {
+        updateText(); // 確保內容為最新
 
-        // Fetching texts directly
-        const greeting = document.getElementById('reportContent').innerText;
-        const thanks = document.getElementById('reportContent2').innerText;
-        
-        // Construct list items with tabs and numbering
-        let pointsText = '\n';
-        const points = ['point1', 'point2', 'point3'];
-        points.forEach((pointId, index) => {
-            pointsText += '\t' + (index + 1) + '. ' + document.getElementById(pointId).innerText + '\n';
-        });
+        const content = document.getElementById("previewFormatted");
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = content.innerHTML;
+        tempDiv.style.position = 'fixed';
+        tempDiv.style.left = '-9999px';
+        document.body.appendChild(tempDiv);
 
-        // Concatenate all parts with proper line breaks
-        textArea.value = greeting + pointsText + '\n' + thanks;
+        const range = document.createRange();
+        range.selectNodeContents(tempDiv);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand("copy");
+        selection.removeAllRanges();
 
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('Copy');
-        textArea.remove();
+        tempDiv.remove();
     }
 
     function copyH1Content() {
         var textArea = document.createElement("textarea");
-        textArea.value = document.querySelector('h1').textContent; // Get content from h1
+        textArea.value = document.querySelector('h1').textContent;
         document.body.appendChild(textArea);
         textArea.select();
         document.execCommand('Copy');
-        textArea.remove();
+        document.body.removeChild(textArea);
+    }
+
+    function openGmailWithTitle() {
+        copyFormattedToClipboard(); // 先複製內容
+        const title = document.querySelector('h1').textContent;
+        const encodedTitle = encodeURIComponent(title);
+        const recipient = "tsengsm@gmail.com";
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipient}&su=${encodedTitle}`;
+        window.open(gmailUrl, '_blank');
     }
 
     function setDate() {
         const today = new Date();
-        const dayOfWeek = today.getDay();
+        const dayOfWeek = today.getDay() || 7;
         const sunday = new Date(today);
-        sunday.setDate(today.getDate() - dayOfWeek + 7); // next Sunday
-        const sunday2 = new Date(today);
-        sunday2.setDate(today.getDate() - dayOfWeek + 7); // next Sunday
+        sunday.setDate(today.getDate() - dayOfWeek + 7);
         const monday = new Date(today);
-        monday.setDate(today.getDate() - dayOfWeek + 1); // this Monday
+        monday.setDate(today.getDate() - dayOfWeek + 1);
 
         function formatDate(date) {
             let year = date.getFullYear();
@@ -75,28 +80,52 @@
 
         document.getElementById('dateSunday').innerText = formatDate(sunday);
         document.getElementById('dateMonday').innerText = formatDateMD(monday);
-        document.getElementById('dateSunday2').innerText = formatDateMD(sunday2);
+        document.getElementById('dateSunday2').innerText = formatDateMD(sunday);
     }
-
 </script>
 </head>
-<body onload="setDate()">
-    <h1>[Weekly Report] 張紀睿_<span id="dateSunday"></span></h1>
-<div id="reportContent">
-    <p>老師好，</p>
-    <p>附檔為本周&nbsp<span id="dateMonday"></span>&nbsp~&nbsp<span id="dateSunday2"></span>&nbsp的Weekly Report，<br>以下為本周report之摘要:</p>
+<body onload="setDate(); updateText();">
+
+<h1>[Weekly Report] 張紀睿_<span id="dateSunday"></span></h1>
+
+<!-- 使用者輸入區 -->
+<div>
+    <input id="input1" type="text" oninput="updateText()" placeholder="第一點"/><br>
+    <input id="input2" type="text" oninput="updateText()" placeholder="第二點"/><br>
+    <input id="input3" type="text" oninput="updateText()" placeholder="第三點"/><br>
+    <input id="input4" type="text" oninput="updateText()" placeholder="進度 1"/><br>
+    <input id="input5" type="text" oninput="updateText()" placeholder="進度 2"/><br>
 </div>
-<ol>
-    <li id="point1"><input id="input1" type="text" /></li>
-    <li id="point2"><input id="input2" type="text" /></li>
-    <li id="point3"><input id="input3" type="text" /></li>
-</ol>
-<div id="reportContent2">
+
+<hr>
+
+<!-- 預覽區（格式化，貼信會保留 list） -->
+<div id="previewFormatted">
+    <p>老師好，</p>
+    <p>附檔為本周(<span id="dateMonday"></span> ~ <span id="dateSunday2"></span>)的Weekly Report，<br>
+    以下為本周report之摘要:</p>
+    <ol>
+        <li id="point1"></li>
+        <li id="point2"></li>
+        <li id="point3"></li>
+    </ol>
+    <p>另外，本周研究之 Progress Update 如下:</p>
+    <ul>
+        <li id="progress1"></li>
+        <li id="progress2"></li>
+    </ul>
+    <p>附上簡報連結:<br>
+    <a href="https://docs.google.com/presentation/d/1zTiZ24jmRdRWKgGBQVaeBULtgNzQ08CCup1STURL6Ls/edit?slide=id.g35a909b42e7_0_48#slide=id.g35a909b42e7_0_48" target="_blank">
+        https://docs.google.com/presentation/d/1zTiZ24jmRdRWKgGBQVaeBULtgNzQ08CCup1STURL6Ls/edit?slide=id.g35a909b42e7_0_48#slide=id.g35a909b42e7_0_48
+    </a></p>
     <p>感謝老師撥冗閱信，<br>若有需改進之處敬請老師指教!</p>
     <p>Best Regards,<br>張紀睿</p>
 </div>
-<button onclick="updateText()">Update Points</button>
-<button onclick="copyToClipboard()">Copy to Clipboard</button>
+
+<!-- 按鈕區 -->
+<button onclick="copyFormattedToClipboard()">Copy to Clipboard</button>
 <button onclick="copyH1Content()">Copy Title</button>
+<button onclick="openGmailWithTitle()">Open Gmail with Title</button>
+
 </body>
 </html>
