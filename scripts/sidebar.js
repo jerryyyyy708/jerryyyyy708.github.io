@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         var static_elements = [
             { type: 'div', class: 'category', text: 'Publications' },
-            { type: 'div', class: 'item', text: 'DL-KDD (arXiv)', href: 'https://arxiv.org/abs/2406.02468' },
+            { type: 'div', class: 'item', text: 'DL-KDD (IJCAI 2025)', href: '/pages/dlkdd.html' },
             { type: 'div', class: 'category', text: 'Music' },
             { type: 'div', class: 'item', text: 'Music Blog', href: 'https://jerryyyyy708.github.io/Music_Site/' },
             { type: 'div', class: 'item', text: 'YouTube', href: 'https://www.youtube.com/channel/UC__4JYA_nYu45UikAlfb1lg' },

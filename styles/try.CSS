@@ -81,3 +81,14 @@ h4{
     overflow-y: auto;
 }
 
+.abstract-text {
+    width: 100%;              /* 佔父容器 80% */
+    max-width: 1250px;        /* 最寬不要超過 800px */
+    min-width: 300px;        /* 最小寬度避免太窄 */
+    margin: 0;          /* 置中 */
+    white-space: normal;     /* 允許換行 */
+    word-wrap: break-word;   /* 遇到長字也能斷行 */
+    overflow-wrap: break-word;
+    text-align: justify;     /* 可選：兩端對齊 */
+  }
+  
